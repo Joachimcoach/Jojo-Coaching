@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  background-color: #EEF2EC;
+  color: #13221C;
+}
+
+::selection {
+  background-color: #F2A93B;
+  color: #13221C;
+}
+
+/* Visible keyboard focus, everywhere */
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible {
+  outline: 2px solid #189F79;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+@layer components {
+  .section {
+    @apply mx-auto max-w-content px-6 sm:px-8 lg:px-10 py-20 sm:py-28;
+  }
+
+  .eyebrow {
+    @apply font-mono text-xs uppercase tracking-[0.22em] text-teal;
+  }
+
+  .h2 {
+    @apply font-display text-3xl sm:text-4xl lg:text-[2.75rem] leading-[1.1] text-ink;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-amber px-6 py-3 font-body text-sm font-semibold text-ink transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-md active:translate-y-0;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-ink/20 bg-transparent px-6 py-3 font-body text-sm font-semibold text-ink transition-colors duration-200 hover:border-ink/50;
+  }
+
+  .card {
+    @apply rounded-2xl border border-sageline bg-card;
+  }
+}
