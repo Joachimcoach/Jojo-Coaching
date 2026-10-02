@@ -68,9 +68,11 @@ export default function Process() {
         </ol>
       </div>
 
-      <p className="mt-12 max-w-xl border-l-2 border-teal/40 pl-5 text-sm italic text-ink/60">
-        {process.note}
-      </p>
+      {process.note && (
+        <p className="mt-12 max-w-xl border-l-2 border-teal/40 pl-5 text-sm italic text-ink/60">
+          {process.note}
+        </p>
+      )}
     </section>
   );
 }

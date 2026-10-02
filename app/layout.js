@@ -25,7 +25,7 @@ const mono = JetBrains_Mono({
 export const metadata = {
   title: 'Joachim Berrewaerts — Coaching sportif personnalisé',
   description:
-    "Coaching en course à pied, cyclisme et renforcement musculaire, piloté par la donnée (Intervals.icu, IA) et l'expertise en physiologie de l'effort. Sans pression, à l'écoute de ton corps.",
+    "Coaching en course à pied, cyclisme, renforcement musculaire et remise en forme, basé sur une expertise en physiologie de l'effort. Sans pression, à l'écoute de ton corps.",
 };
 
 export const viewport = {

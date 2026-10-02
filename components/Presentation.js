@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { GraduationCap } from 'lucide-react';
 import { presentation } from '@/lib/content';
 
@@ -5,12 +6,15 @@ export default function Presentation() {
   return (
     <section id="presentation" className="section">
       <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-center lg:gap-16">
-        {/* Emplacement photo — remplacer par une vraie photo de Joachim */}
-        <div className="relative mx-auto aspect-[4/5] w-full max-w-sm overflow-hidden rounded-2xl border border-sageline bg-gradient-to-br from-teal-light via-mist to-amber-light">
-          <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 text-ink/40">
-            <GraduationCap size={40} strokeWidth={1.5} />
-            <span className="font-mono text-xs uppercase tracking-[0.2em]">Photo de Joachim</span>
-          </div>
+        <div className="relative mx-auto aspect-[4/5] w-full max-w-sm overflow-hidden rounded-2xl border border-sageline bg-teal-light">
+          <Image
+            src={presentation.photo.src}
+            alt={presentation.photo.alt}
+            fill
+            sizes="(min-width: 1024px) 384px, 90vw"
+            className="object-cover"
+            priority
+          />
         </div>
 
         <div>
@@ -27,10 +31,28 @@ export default function Presentation() {
           </div>
 
           <div className="mt-7 inline-flex items-center gap-2 rounded-full border border-sageline bg-card px-4 py-2">
-            <GraduationCap size={16} className="text-teal" />
+            <GraduationCap size={16} className="flex-shrink-0 text-teal" />
             <span className="font-mono text-xs text-ink/70">{presentation.diploma}</span>
           </div>
         </div>
+      </div>
+
+      <div className="mt-12 grid grid-cols-2 gap-4 sm:gap-6">
+        {presentation.gallery.map((img) => (
+          <div
+            key={img.src}
+            className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-sageline bg-teal-light"
+          >
+            <Image
+              src={img.src}
+              alt={img.alt}
+              fill
+              sizes="(min-width: 1024px) 50vw, 50vw"
+              className="object-cover"
+              style={{ objectPosition: img.position }}
+            />
+          </div>
+        ))}
       </div>
     </section>
   );
