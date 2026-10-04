@@ -1,7 +1,6 @@
 import Nav from '@/components/Nav';
 import Hero from '@/components/Hero';
 import Presentation from '@/components/Presentation';
-import Vision from '@/components/Vision';
 import Process from '@/components/Process';
 import Formules from '@/components/Formules';
 import Badges from '@/components/Badges';
@@ -15,10 +14,9 @@ export default function Home() {
       <Nav />
       <main>
         <Hero />
-        <Presentation />
-        <Vision />
-        <Process />
         <Formules />
+        <Process />
+        <Presentation />
         <Badges />
         <FAQ />
         <CTAFinal />

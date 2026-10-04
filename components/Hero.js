@@ -41,12 +41,17 @@ export default function Hero() {
 
         <p className="mt-6 max-w-xl text-lg text-ink/70 sm:text-xl">{hero.subtitle}</p>
 
-        <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center">
+        <p className="mt-7 flex flex-wrap items-baseline gap-x-3 gap-y-1">
+          <span className="font-display text-2xl font-semibold text-ink sm:text-3xl">{hero.prix}</span>
+          <span className="font-mono text-xs uppercase tracking-[0.18em] text-teal">{hero.prixDetail}</span>
+        </p>
+
+        <div className="mt-7 flex flex-col gap-4 sm:flex-row sm:items-center">
           <a href="#contact" className="btn-primary">
             {hero.ctaPrimary}
             <ArrowRight size={16} />
           </a>
-          <a href="#methode" className="btn-secondary">
+          <a href="#formules" className="btn-secondary">
             {hero.ctaSecondary}
           </a>
         </div>

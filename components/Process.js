@@ -1,31 +1,78 @@
+import Image from 'next/image';
 import { process } from '@/lib/content';
+import CalculateurCritique from '@/components/CalculateurCritique';
 
-// Icônes "signal" dessinées à la main : la courbe passe d'un signal brut et
-// dentelé (donnée capteur) à une courbe lisse (plan livré), en 5 étapes.
-// Le point ambre marque l'étape humaine (Joachim) : l'endroit où la donnée
-// devient un choix.
-const SIGNAL_PATHS = [
-  'M0,20 L8,10 L16,28 L24,6 L32,26 L40,12 L48,24 L56,8 L64,22 L72,14 L80,26 L88,10 L96,20 L104,14 L112,22 L120,18',
-  'M0,20 L15,20 L15,12 L30,12 L30,24 L45,24 L45,10 L60,10 L60,18 L75,18 L75,8 L90,8 L90,16 L105,16 L105,20 L120,20',
-  'M0,22 C15,8 25,8 35,20 C45,32 55,32 65,16 C75,4 85,4 95,18 C102,26 110,20 120,20',
-  'M0,22 C30,8 50,8 60,18 C70,28 90,28 120,14',
-  'M0,20 C30,2 90,38 120,20',
-];
-
-function SignalIcon({ index, accent }) {
-  const color = accent ? '#F2A93B' : '#189F79';
+// Courbe puissance-durée : la puissance tenable baisse avec la durée de
+// l'effort et tend vers la valeur critique (ligne pointillée). Les deux
+// points ambre représentent les deux efforts du test.
+function CourbeCritique() {
+  const CP = 270;
+  const W = 20000;
+  const tMin = 60;
+  const tMax = 1200;
+  const x = (t) => 36 + ((t - tMin) / (tMax - tMin)) * 268;
+  const y = (p) => 168 - ((p - 200) / (620 - 200)) * 150;
+  const pts = [];
+  for (let t = tMin; t <= tMax; t += 15) pts.push(`${x(t).toFixed(1)},${y(CP + W / t).toFixed(1)}`);
+  const tests = [180, 720];
   return (
-    <svg viewBox="0 0 120 40" width="120" height="40" aria-hidden="true">
-      <path
-        d={SIGNAL_PATHS[index]}
-        fill="none"
-        stroke={color}
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      {accent && <circle cx="60" cy="18" r="3.5" fill="#F2A93B" />}
+    <svg viewBox="0 0 320 200" className="h-full w-full" role="img" aria-label="Courbe puissance-durée">
+      <line x1="36" y1="18" x2="36" y2="172" stroke="#13221C" strokeOpacity="0.25" />
+      <line x1="36" y1="172" x2="308" y2="172" stroke="#13221C" strokeOpacity="0.25" />
+      <line x1="36" y1={y(CP)} x2="308" y2={y(CP)} stroke="#13221C" strokeOpacity="0.45" strokeDasharray="4 4" />
+      <text x="304" y={y(CP) + 14} textAnchor="end" fontSize="10" fill="#13221C" fillOpacity="0.7">
+        Valeur critique
+      </text>
+      <polyline points={pts.join(' ')} fill="none" stroke="#189F79" strokeWidth="2.5" strokeLinecap="round" />
+      {tests.map((t) => (
+        <circle key={t} cx={x(t)} cy={y(CP + W / t)} r="5" fill="#F2A93B" stroke="#FFFFFF" strokeWidth="2" />
+      ))}
+      <text x="172" y="190" textAnchor="middle" fontSize="10" fill="#13221C" fillOpacity="0.55">
+        Durée de l&apos;effort
+      </text>
+      <text x="14" y="95" textAnchor="middle" fontSize="10" fill="#13221C" fillOpacity="0.55" transform="rotate(-90 14 95)">
+        Vitesse ou puissance
+      </text>
     </svg>
+  );
+}
+
+function Visuel({ visuel, accent }) {
+  if (!visuel) return null;
+  const cadre = `relative aspect-[16/10] w-full overflow-hidden rounded-xl bg-card sm:w-64 lg:w-80 ${
+    accent ? 'border-2 border-amber' : 'border border-sageline'
+  }`;
+
+  if (visuel.type === 'courbe') {
+    return (
+      <div className={`${cadre} p-2`}>
+        <CourbeCritique />
+      </div>
+    );
+  }
+
+  if (visuel.type === 'logo') {
+    return (
+      <div className={`${cadre} flex flex-col items-center justify-center gap-3`}>
+        <div className="relative h-20 w-20">
+          <Image src={visuel.src} alt={visuel.alt} fill sizes="80px" className="object-contain" />
+        </div>
+        {visuel.legende && <p className="font-display text-lg font-semibold text-ink">{visuel.legende}</p>}
+      </div>
+    );
+  }
+
+  return (
+    <div className={cadre}>
+      <Image
+        src={visuel.src}
+        alt={visuel.alt}
+        fill
+        sizes="(min-width: 1024px) 320px, (min-width: 640px) 256px, 90vw"
+        className="object-cover"
+        style={{ objectPosition: visuel.position || 'center' }}
+      />
+    </div>
   );
 }
 
@@ -42,7 +89,7 @@ export default function Process() {
         <div className="absolute bottom-2 left-6 top-2 w-px bg-sageline" aria-hidden="true" />
 
         <ol className="space-y-10 sm:space-y-12">
-          {process.steps.map((step, i) => (
+          {process.steps.map((step) => (
             <li
               key={step.number}
               className="relative flex flex-col gap-5 sm:flex-row sm:items-start sm:gap-8"
@@ -60,13 +107,15 @@ export default function Process() {
                 <p className="mt-2 max-w-xl text-base leading-relaxed text-ink/70">{step.text}</p>
               </div>
 
-              <div className="hidden shrink-0 pt-2 sm:block">
-                <SignalIcon index={i} accent={step.accent} />
+              <div className="shrink-0 sm:pt-1">
+                <Visuel visuel={step.visuel} accent={step.accent} />
               </div>
             </li>
           ))}
         </ol>
       </div>
+
+      <CalculateurCritique />
 
       {process.note && (
         <p className="mt-12 max-w-xl border-l-2 border-teal/40 pl-5 text-sm italic text-ink/60">
