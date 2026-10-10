@@ -55,6 +55,14 @@ export default function Hero() {
             {hero.ctaSecondary}
           </a>
         </div>
+
+        <a
+          href="#calculateur"
+          className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-ink/80 underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
+        >
+          Calcule ta vitesse ou ta puissance critique en 30 secondes
+          <ArrowRight size={14} />
+        </a>
       </div>
     </section>
   );

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { ChevronDown, ArrowRight } from 'lucide-react';
+import { ChevronDown, ArrowRight, Gauge } from 'lucide-react';
 import { calculateur } from '@/lib/content';
 
 /* ------------------------------------------------------------------
@@ -160,7 +160,7 @@ function TableZones({ lignes, avecNom }) {
 
 export default function CalculateurCritique() {
   const c = calculateur;
-  const [ouvert, setOuvert] = useState(false);
+  const [ouvert, setOuvert] = useState(true);
   const [sport, setSport] = useState('course');
   const [course, setCourse] = useState({ d1: '', t1: '', d2: '', t2: '' });
   const [velo, setVelo] = useState({ t1: '', p1: '', t2: '', p2: '' });
@@ -176,25 +176,37 @@ export default function CalculateurCritique() {
   const horsPlage = valide && (res.tMin < DUREE_MIN || res.tMax > DUREE_MAX);
 
   return (
-    <div className="mt-14 sm:ml-20">
+    <div
+      id="calculateur"
+      className="mt-14 scroll-mt-28 overflow-hidden rounded-2xl border-2 border-amber bg-card shadow-lg sm:ml-20"
+    >
       <button
         type="button"
         onClick={() => setOuvert(!ouvert)}
         aria-expanded={ouvert}
-        className="flex w-full items-center justify-between gap-4 rounded-2xl border border-sageline bg-card px-6 py-5 text-left transition-colors hover:border-teal"
+        className="flex w-full items-center justify-between gap-4 bg-amber/10 px-6 py-6 text-left transition-colors hover:bg-amber/20 sm:px-8"
       >
-        <span>
-          <span className="block font-display text-lg font-semibold text-ink">{c.titre}</span>
-          <span className="mt-1 block text-sm text-ink/60">{c.sousTitre}</span>
+        <span className="flex items-start gap-4">
+          <span className="hidden h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-amber text-ink sm:flex">
+            <Gauge size={24} />
+          </span>
+          <span>
+            <span className="mb-2 inline-block rounded-full bg-amber px-3 py-1 font-mono text-[0.7rem] font-semibold uppercase tracking-wide text-ink">
+              Outil gratuit
+            </span>
+            <span className="block font-display text-xl font-semibold text-ink sm:text-2xl">{c.titre}</span>
+            <span className="mt-1 block text-sm text-ink/70">{c.sousTitre}</span>
+          </span>
         </span>
         <ChevronDown
           size={20}
-          className={`flex-shrink-0 text-teal transition-transform ${ouvert ? 'rotate-180' : ''}`}
+          className={`flex-shrink-0 text-ink transition-transform ${ouvert ? 'rotate-180' : ''}`}
         />
       </button>
 
       {ouvert && (
-        <div className="card mt-3 p-6 sm:p-8">
+        <div className="border-t border-amber/40 p-6 sm:p-8">
+          <div className="flex flex-wrap items-center gap-4">
           <div className="inline-flex rounded-full border border-sageline bg-mist p-1" role="group">
             {[
               ['course', c.course],
@@ -212,6 +224,18 @@ export default function CalculateurCritique() {
                 {label}
               </button>
             ))}
+          </div>
+          <button
+            type="button"
+            onClick={() =>
+              sport === 'course'
+                ? setCourse({ d1: '1200', t1: '3:40', d2: '3600', t2: '12:30' })
+                : setVelo({ t1: '3:00', p1: '380', t2: '12:00', p2: '300' })
+            }
+            className="text-sm font-semibold text-teal underline-offset-4 hover:underline"
+          >
+            Essayer avec un exemple
+          </button>
           </div>
 
           <p className="mt-5 max-w-2xl text-sm leading-relaxed text-ink/70">

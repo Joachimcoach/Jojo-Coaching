@@ -16,8 +16,8 @@ export default function Home() {
         <Hero />
         <Process />
         <Presentation />
-        <Formules />
         <Badges />
+        <Formules />
         <FAQ />
         <CTAFinal />
       </main>
