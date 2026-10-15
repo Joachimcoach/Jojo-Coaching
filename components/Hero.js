@@ -1,5 +1,6 @@
 import { ArrowRight } from 'lucide-react';
 import { hero } from '@/lib/content';
+import { reservationProps } from '@/lib/reservation';
 
 export default function Hero() {
   return (
@@ -47,7 +48,7 @@ export default function Hero() {
         </p>
 
         <div className="mt-7 flex flex-col gap-4 sm:flex-row sm:items-center">
-          <a href="#contact" className="btn-primary">
+          <a {...reservationProps} className="btn-primary">
             {hero.ctaPrimary}
             <ArrowRight size={16} />
           </a>

@@ -1,5 +1,6 @@
 import { Check } from 'lucide-react';
 import { formules } from '@/lib/content';
+import { reservationProps } from '@/lib/reservation';
 
 export default function Formules() {
   return (
@@ -46,7 +47,7 @@ export default function Formules() {
             </ul>
 
             <a
-              href="#contact"
+              {...reservationProps}
               className={offer.highlighted ? 'btn-primary mt-8 w-full' : 'btn-secondary mt-8 w-full'}
             >
               {offer.cta}

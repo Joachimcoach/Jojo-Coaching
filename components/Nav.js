@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { nav, site } from '@/lib/content';
+import { reservationProps } from '@/lib/reservation';
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
@@ -24,7 +25,7 @@ export default function Nav() {
               {item.label}
             </a>
           ))}
-          <a href="#contact" className="btn-primary">
+          <a {...reservationProps} className="btn-primary">
             Appel découverte
           </a>
         </nav>
@@ -55,7 +56,7 @@ export default function Nav() {
               </li>
             ))}
             <li>
-              <a href="#contact" onClick={() => setOpen(false)} className="btn-primary w-full">
+              <a {...reservationProps} onClick={() => setOpen(false)} className="btn-primary w-full">
                 Appel découverte
               </a>
             </li>

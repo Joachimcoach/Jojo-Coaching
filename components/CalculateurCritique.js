@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { ChevronDown, ArrowRight, Gauge } from 'lucide-react';
 import { calculateur } from '@/lib/content';
+import { reservationProps } from '@/lib/reservation';
 
 /* ------------------------------------------------------------------
    Modèle à deux paramètres (Monod & Scherrer)
@@ -369,7 +370,7 @@ export default function CalculateurCritique() {
 
               <div className="flex flex-col gap-4 rounded-xl bg-teal-light/60 p-5 sm:flex-row sm:items-center sm:justify-between">
                 <p className="max-w-xl text-sm text-ink/80">{c.avertissement}</p>
-                <a href="#contact" className="btn-primary flex-shrink-0">
+                <a {...reservationProps} className="btn-primary flex-shrink-0">
                   {c.cta}
                   <ArrowRight size={16} />
                 </a>

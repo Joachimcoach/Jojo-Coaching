@@ -1,7 +1,9 @@
 import { Quote } from 'lucide-react';
-import { testimonials } from '@/lib/content';
+import { temoignages as testimonials } from '@/lib/temoignages';
 
 export default function Testimonials() {
+  if (testimonials.items.length === 0) return null;
+
   return (
     <section id="temoignages" className="section">
       <p className="eyebrow">{testimonials.eyebrow}</p>

@@ -1,5 +1,7 @@
 import Image from 'next/image';
+import { Trophy } from 'lucide-react';
 import { presentation } from '@/lib/content';
+import { palmares } from '@/lib/palmares';
 
 export default function Presentation() {
   return (
@@ -28,6 +30,22 @@ export default function Presentation() {
             ))}
           </div>
         </div>
+      </div>
+
+      <div className="mt-12">
+        <h3 className="font-display text-xl font-semibold text-ink">{palmares.titre}</h3>
+        <ul className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {palmares.items.map((item) => (
+            <li key={item.resultat} className="card flex flex-col p-5">
+              <span className="flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-wide text-teal">
+                <Trophy size={14} className="text-amber" />
+                {item.sport}
+              </span>
+              <p className="mt-3 font-display text-lg font-semibold leading-snug text-ink">{item.resultat}</p>
+              <p className="mt-1 text-sm leading-relaxed text-ink/65">{item.detail}</p>
+            </li>
+          ))}
+        </ul>
       </div>
 
       <div className="mt-12 grid grid-cols-2 gap-4 sm:gap-6">
