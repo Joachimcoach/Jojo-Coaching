@@ -1,13 +1,12 @@
-import Nav from '@/components/Nav';
-import Hero from '@/components/Hero';
-import Presentation from '@/components/Presentation';
-import Process from '@/components/Process';
-import Formules from '@/components/Formules';
-import Testimonials from '@/components/Testimonials';
-import Badges from '@/components/Badges';
-import FAQ from '@/components/FAQ';
-import CTAFinal from '@/components/CTAFinal';
-import Footer from '@/components/Footer';
+import Nav from '@/components/bcf/Nav';
+import Hero from '@/components/bcf/Hero';
+import Bande from '@/components/bcf/Bande';
+import Histoire from '@/components/bcf/Histoire';
+import Methode from '@/components/bcf/Methode';
+import Temoignages from '@/components/bcf/Temoignages';
+import Formules from '@/components/bcf/Formules';
+import FAQ from '@/components/bcf/FAQ';
+import Contact from '@/components/bcf/Contact';
 
 export default function Home() {
   return (
@@ -15,15 +14,14 @@ export default function Home() {
       <Nav />
       <main>
         <Hero />
-        <Process />
-        <Presentation />
-        <Badges />
-        <Testimonials />
+        <Bande />
+        <Histoire />
+        <Methode />
+        <Temoignages />
         <Formules />
         <FAQ />
-        <CTAFinal />
+        <Contact />
       </main>
-      <Footer />
     </>
   );
 }

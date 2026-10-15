@@ -1,16 +1,17 @@
-import { Bricolage_Grotesque, Instrument_Sans, JetBrains_Mono } from 'next/font/google';
+import { Anton, Archivo, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
+import './bcf.css';
 
-const display = Bricolage_Grotesque({
+const display = Anton({
   subsets: ['latin'],
-  weight: ['500', '600', '700', '800'],
+  weight: ['400'],
   variable: '--font-display',
   display: 'swap',
 });
 
-const body = Instrument_Sans({
+const body = Archivo({
   subsets: ['latin'],
-  weight: ['400', '500', '600'],
+  weight: ['400', '500', '600', '700'],
   variable: '--font-body',
   display: 'swap',
 });
@@ -23,15 +24,15 @@ const mono = JetBrains_Mono({
 });
 
 export const metadata = {
-  title: 'Joachim Berrewaerts — Coaching sportif personnalisé',
+  title: 'La Grimpe — Coaching vélo & course à pied pour la BCF',
   description:
-    "Coaching en course à pied, cyclisme et renforcement musculaire, basé sur une expertise en physiologie de l'effort. Sans pression, à l'écoute de ton corps.",
+    "Plans d'entraînement pour les classiques de la Bonneville Cycling Federation, par Joachim Berrewaerts : coureur Pro Tour, master en sciences de la motricité (ULB), spécialisé en physiologie de l'effort.",
 };
 
 export const viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: '#EEF2EC',
+  themeColor: '#f3efe6',
 };
 
 export default function RootLayout({ children }) {
