@@ -47,11 +47,7 @@ export default function HeroAccueil() {
       <div className="pointer-events-none sm:absolute sm:inset-x-0 sm:bottom-0">
         <div className="conteneur flex flex-col items-center py-10 text-center sm:pb-14">
           <p className="etiquette text-white/70">{h.surtitre}</p>
-          <h1 className="affiche mt-4 text-[16vw] sm:text-[8.5rem] lg:text-[10rem]">
-            {h.titre[0]}
-            <br />
-            {h.titre[1]}
-          </h1>
+          <h1 className="affiche mt-4 text-5xl sm:text-7xl">{h.titre}</h1>
           <p className="mt-5 max-w-xl text-base text-white/85 sm:text-lg">{h.accroche}</p>
           <a
             {...reservationProps}

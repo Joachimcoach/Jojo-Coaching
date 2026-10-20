@@ -5,7 +5,8 @@ import { RESERVATION_URL, reservationProps } from '@/lib/reservation';
 
 export default function Contact({ sport }) {
   const lien = RESERVATION_URL ? reservationProps : { href: `mailto:${site.email}` };
-  const fond = sport === 'accueil' ? couleurs.velo : couleurs[sport];
+  const accueil = sport === 'accueil';
+  const fond = accueil ? '#141414' : couleurs[sport];
   return (
     <>
       <section id="contact" className="text-white" style={{ background: fond }}>
@@ -14,7 +15,9 @@ export default function Contact({ sport }) {
           <p className="mt-6 max-w-xl text-lg text-white/90">{contact.texte}</p>
           <a
             {...lien}
-            className="mt-10 inline-flex items-center gap-2 rounded-full bg-[var(--encre)] px-8 py-4 font-bold text-white transition-transform hover:-translate-y-0.5"
+            className={`mt-10 inline-flex items-center gap-2 rounded-full px-8 py-4 font-bold transition-transform hover:-translate-y-0.5 ${
+              accueil ? 'bg-white text-[var(--encre)]' : 'bg-[var(--encre)] text-white'
+            }`}
           >
             {contact.cta}
             <ArrowRight size={18} />
@@ -24,7 +27,7 @@ export default function Contact({ sport }) {
           </a>
         </div>
       </section>
-      <footer className="bg-[var(--encre)] text-white/60">
+      <footer className={`bg-[var(--encre)] text-white/60 ${accueil ? 'border-t border-white/15' : ''}`}>
         <div className="conteneur flex flex-col gap-4 py-8 text-sm sm:flex-row sm:items-center sm:justify-between">
           <p className="affiche text-xl text-white">{site.nom}</p>
           <nav className="flex gap-6">

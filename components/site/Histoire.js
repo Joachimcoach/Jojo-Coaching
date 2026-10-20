@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { histoire, couleurs } from '@/lib/site';
+import { histoire } from '@/lib/site';
 
 export default function Histoire() {
   const h = histoire;
@@ -9,7 +9,7 @@ export default function Histoire() {
         {/* Portrait détouré sur un bloc bicolore course / vélo */}
         <div
           className="relative mx-auto aspect-[4/5] w-full max-w-md overflow-hidden rounded-[2rem] border-2 border-[var(--encre)]"
-          style={{ background: `linear-gradient(135deg, ${couleurs.course} 0 50%, ${couleurs.velo} 50% 100%)` }}
+          style={{ background: 'var(--encre)' }}
         >
           <Image
             src={h.photo.src}
@@ -23,6 +23,7 @@ export default function Histoire() {
         <div>
           <p className="etiquette text-[var(--gris)]">{h.surtitre}</p>
           <h2 className="affiche mt-4 text-5xl sm:text-7xl">{h.titre}</h2>
+          {h.role && <p className="mt-3 text-lg font-semibold">{h.role}</p>}
           <div className="mt-8 space-y-4 text-base leading-relaxed text-[var(--encre)]/80 sm:text-lg">
             {h.paragraphes.map((p) => (
               <p key={p.slice(0, 24)}>{p}</p>
@@ -40,7 +41,7 @@ export default function Histoire() {
               i < 2 ? 'border-b-2 lg:border-b-0' : ''
             } ${i === 3 ? 'lg:border-r-0' : ''}`}
           >
-            <p className="affiche text-5xl sm:text-6xl" style={{ color: i === 3 ? couleurs.course : couleurs.velo }}>
+            <p className="affiche text-5xl sm:text-6xl">
               {c.valeur}
             </p>
             <p className="mt-3 font-semibold">{c.label}</p>
