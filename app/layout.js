@@ -1,6 +1,6 @@
 import { Anton, Archivo, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
-import './bcf.css';
+import './theme.css';
 
 const display = Anton({
   subsets: ['latin'],
@@ -24,9 +24,9 @@ const mono = JetBrains_Mono({
 });
 
 export const metadata = {
-  title: 'La Grimpe — Coaching vélo & course à pied pour la BCF',
+  title: 'Joachim Berrewaerts — Coaching course à pied & vélo',
   description:
-    "Plans d'entraînement pour les classiques de la Bonneville Cycling Federation, par Joachim Berrewaerts : coureur Pro Tour, master en sciences de la motricité (ULB), spécialisé en physiologie de l'effort.",
+    "Coaching course à pied et vélo par Joachim Berrewaerts : plans d'entraînement personnalisés, tests de vitesse et puissance critiques, master en sciences de la motricité (ULB).",
 };
 
 export const viewport = {

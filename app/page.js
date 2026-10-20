@@ -1,27 +1,19 @@
-import Nav from '@/components/bcf/Nav';
-import Hero from '@/components/bcf/Hero';
-import Bande from '@/components/bcf/Bande';
-import Histoire from '@/components/bcf/Histoire';
-import Methode from '@/components/bcf/Methode';
-import Temoignages from '@/components/bcf/Temoignages';
-import Formules from '@/components/bcf/Formules';
-import FAQ from '@/components/bcf/FAQ';
-import Contact from '@/components/bcf/Contact';
+import Page from '@/components/site/Page';
+import HeroAccueil from '@/components/site/HeroAccueil';
+import Bande from '@/components/site/Bande';
+import Histoire from '@/components/site/Histoire';
+import ChoixSport from '@/components/site/ChoixSport';
+import Temoignages from '@/components/site/Temoignages';
+import { accueil, couleurs } from '@/lib/site';
 
-export default function Home() {
+export default function Accueil() {
   return (
-    <>
-      <Nav />
-      <main>
-        <Hero />
-        <Bande />
-        <Histoire />
-        <Methode />
-        <Temoignages />
-        <Formules />
-        <FAQ />
-        <Contact />
-      </main>
-    </>
+    <Page sport="accueil">
+      <HeroAccueil />
+      <Bande mots={accueil.bande} couleur={couleurs.velo} />
+      <Histoire />
+      <ChoixSport />
+      <Temoignages />
+    </Page>
   );
 }
