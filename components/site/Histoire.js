@@ -32,23 +32,6 @@ export default function Histoire() {
         </div>
       </div>
 
-      {/* Palmarès */}
-      <ul className="grid grid-cols-2 border-t-2 border-[var(--encre)] lg:grid-cols-4">
-        {h.chiffres.map((c, i) => (
-          <li
-            key={c.label}
-            className={`border-[var(--encre)] p-6 sm:p-8 ${i % 2 === 0 ? 'border-r-2' : 'lg:border-r-2'} ${
-              i < 2 ? 'border-b-2 lg:border-b-0' : ''
-            } ${i === 3 ? 'lg:border-r-0' : ''}`}
-          >
-            <p className="affiche text-5xl sm:text-6xl">
-              {c.valeur}
-            </p>
-            <p className="mt-3 font-semibold">{c.label}</p>
-            <p className="mt-1 text-sm text-[var(--gris)]">{c.detail}</p>
-          </li>
-        ))}
-      </ul>
     </section>
   );
 }

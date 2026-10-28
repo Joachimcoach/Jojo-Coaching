@@ -1,5 +1,6 @@
 import { sports } from '@/lib/site';
 import Calculateur from '@/components/site/Calculateur';
+import Intervals from '@/components/site/Intervals';
 
 export default function Methode({ sport }) {
   const s = sports[sport];
@@ -18,6 +19,8 @@ export default function Methode({ sport }) {
             </li>
           ))}
         </ol>
+
+        <Intervals />
 
         <Calculateur sport={sport} titre={s.calculateur.titre} sousTitre={s.calculateur.sousTitre} />
       </div>
