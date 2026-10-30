@@ -24,9 +24,22 @@ export default function Histoire() {
           <p className="etiquette text-[var(--gris)]">{h.surtitre}</p>
           <h2 className="affiche mt-4 text-5xl sm:text-7xl">{h.titre}</h2>
           {h.role && <p className="mt-3 text-lg font-semibold">{h.role}</p>}
-          <div className="mt-8 space-y-4 text-base leading-relaxed text-[var(--encre)]/80 sm:text-lg">
-            {h.paragraphes.map((p) => (
-              <p key={p.slice(0, 24)}>{p}</p>
+          <div className="mt-8 space-y-7">
+            {h.blocs.map((b) => (
+              <div key={b.intertitre}>
+                <h3 className="etiquette text-[var(--encre)]">{b.intertitre}</h3>
+                <p className="mt-2 text-base leading-relaxed text-[var(--encre)]/80 sm:text-lg">{b.texte}</p>
+                {b.liste && (
+                  <ul className="mt-3 space-y-1.5 text-base text-[var(--encre)]/80 sm:text-lg">
+                    {b.liste.map((item) => (
+                      <li key={item} className="flex gap-3">
+                        <span className="mt-[0.6em] h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--encre)]" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
             ))}
           </div>
         </div>
