@@ -95,7 +95,7 @@ export function zonesCourse(vc) {
     let plage;
     if (z.min === undefined) plage = `plus lent que ${formatAllure(vc * z.max)}`;
     else if (z.max === undefined) plage = `plus rapide que ${formatAllure(vc * z.min)}`;
-    else plage = `${formatAllure(vc * z.max)} – ${formatAllure(vc * z.min)}`;
+    else plage = `${formatAllure(vc * z.max)} - ${formatAllure(vc * z.min)}`;
     return { id: z.id, plage: `${plage} /km` };
   });
 }
@@ -107,7 +107,7 @@ export function zonesVelo(cp) {
     let plage;
     if (bas === null) plage = `jusqu'à ${haut} W`;
     else if (haut === null) plage = `${bas} W et plus`;
-    else plage = `${bas} – ${haut} W`;
+    else plage = `${bas} - ${haut} W`;
     return { id: z.id, nom: z.name, plage };
   });
 }

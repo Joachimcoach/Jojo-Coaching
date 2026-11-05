@@ -24,9 +24,19 @@ const mono = JetBrains_Mono({
 });
 
 export const metadata = {
-  title: 'Joachim Berrewaerts — Coaching course à pied & vélo',
+  metadataBase: new URL('https://www.joachimcoaching.be'),
+  title: 'Joachim Berrewaerts - Coach course à pied & vélo à Bruxelles',
   description:
-    "Coaching course à pied et vélo par Joachim Berrewaerts : plans d'entraînement personnalisés, tests de vitesse et puissance critiques, master en sciences de la motricité (ULB).",
+    "Coach course à pied et vélo à Bruxelles : plans d'entraînement personnalisés, tests de vitesse et puissance critiques, suivi chaque semaine. Master en sciences de la motricité (ULB).",
+  alternates: { canonical: '/' },
+  openGraph: {
+    title: 'Joachim Berrewaerts - Coach course à pied & vélo à Bruxelles',
+    description: "Plans d'entraînement personnalisés en course à pied et à vélo. Appel découverte gratuit.",
+    url: '/',
+    siteName: 'Joachim Berrewaerts Coaching',
+    locale: 'fr_BE',
+    type: 'website',
+  },
 };
 
 export const viewport = {

@@ -6,7 +6,8 @@ import Tarifs from '@/components/site/Tarifs';
 import FAQ from '@/components/site/FAQ';
 
 export const metadata = {
-  title: 'Coaching vélo — Joachim Berrewaerts',
+  title: 'Coach vélo à Bruxelles - Joachim Berrewaerts',
+  alternates: { canonical: '/velo' },
   description:
     "Plans d'entraînement vélo personnalisés : test de puissance critique, zones, suivi chaque semaine. Offre équipe pour la Bonneville Cycling Federation.",
 };

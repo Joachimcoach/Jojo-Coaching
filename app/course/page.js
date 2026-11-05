@@ -5,7 +5,8 @@ import Tarifs from '@/components/site/Tarifs';
 import FAQ from '@/components/site/FAQ';
 
 export const metadata = {
-  title: 'Coaching course à pied — Joachim Berrewaerts',
+  title: 'Coach course à pied à Bruxelles - Joachim Berrewaerts',
+  alternates: { canonical: '/course' },
   description:
     "Plans d'entraînement course à pied personnalisés, du 10 km au marathon et au trail : test de vitesse critique, zones d'allure, suivi chaque semaine.",
 };
