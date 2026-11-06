@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
 import { site, couleurs } from '@/lib/site';
@@ -27,7 +27,7 @@ const LIENS = {
 // Interrupteur Course | Vélo : passe d'une page à l'autre
 function Interrupteur({ sport }) {
   return (
-    <div className="flex rounded-full border-2 border-[var(--encre)] p-0.5" role="group" aria-label="Choix du sport">
+    <div className="flex rounded-full border-2 border-current p-0.5" role="group" aria-label="Choix du sport">
       {[
         ['course', 'Course', '/course'],
         ['velo', 'Vélo', '/velo'],
@@ -51,10 +51,31 @@ function Interrupteur({ sport }) {
 
 export default function Nav({ sport }) {
   const [ouvert, setOuvert] = useState(false);
+  const [defile, setDefile] = useState(false);
   const liens = LIENS[sport];
 
+  // Accueil : le menu est posé sur les photos (transparent, texte blanc)
+  // et reprend son fond crème une fois les photos dépassées.
+  const surPhotos = sport === 'accueil';
+  useEffect(() => {
+    if (!surPhotos) return;
+    const verifier = () => setDefile(window.scrollY > window.innerHeight * 0.6);
+    verifier();
+    window.addEventListener('scroll', verifier, { passive: true });
+    return () => window.removeEventListener('scroll', verifier);
+  }, [surPhotos]);
+  const transparent = surPhotos && !defile && !ouvert;
+
   return (
-    <header className="sticky top-0 z-50 border-b-2 border-[var(--encre)] bg-[var(--papier)]">
+    <header
+      className={`top-0 z-50 border-b-2 transition-colors duration-300 ${
+        surPhotos ? 'fixed inset-x-0' : 'sticky'
+      } ${
+        transparent
+          ? 'border-transparent bg-gradient-to-b from-black/60 to-transparent bg-origin-border text-white'
+          : 'border-[var(--encre)] bg-[var(--papier)] text-[var(--encre)]'
+      }`}
+    >
       <div className="conteneur flex items-center justify-between gap-4 py-3">
         <Link href="/" className="affiche text-xl sm:text-2xl">
           {site.nom}
@@ -67,7 +88,10 @@ export default function Nav({ sport }) {
             </a>
           ))}
           <Interrupteur sport={sport} />
-          <a {...reservationProps} className="bouton-accent !py-2.5 text-sm">
+          <a
+            {...reservationProps}
+            className={`bouton-accent !py-2.5 text-sm ${transparent ? '!bg-white !text-[var(--encre)]' : ''}`}
+          >
             Appel découverte
           </a>
         </nav>
@@ -76,7 +100,7 @@ export default function Nav({ sport }) {
           <Interrupteur sport={sport} />
           <button
             type="button"
-            className="rounded-full border-2 border-[var(--encre)] p-2"
+            className="rounded-full border-2 border-current p-2"
             aria-label={ouvert ? 'Fermer le menu' : 'Ouvrir le menu'}
             aria-expanded={ouvert}
             onClick={() => setOuvert((v) => !v)}

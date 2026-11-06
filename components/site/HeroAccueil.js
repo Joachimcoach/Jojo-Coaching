@@ -14,7 +14,7 @@ export default function HeroAccueil() {
           <Link
             key={p.src}
             href={p.lien}
-            className="group relative block h-[52vh] min-h-[320px] overflow-hidden sm:h-[88vh] sm:max-h-[860px]"
+            className="group relative block h-[62vh] min-h-[380px] overflow-hidden sm:h-[100svh] sm:min-h-[600px]"
           >
             <Image
               src={p.src}
@@ -26,7 +26,7 @@ export default function HeroAccueil() {
               style={{ objectPosition: p.position }}
             />
             <span
-              className={`absolute top-4 z-10 flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-bold text-white sm:top-6 sm:px-4 sm:text-sm ${
+              className={`absolute top-20 z-10 flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-bold text-white sm:top-28 sm:px-4 sm:text-sm ${
                 i === 0 ? 'left-3 sm:left-6' : 'right-3 sm:right-6'
               }`}
               style={{ background: couleurs[p.sport] }}
